@@ -1,7 +1,6 @@
 ## Breaking Camel Case ##
 # 'camelCase' should output 'camel Case'
 # Date: August 1, 2020
-# 6 kyu
 # https://www.codewars.com/kata/5208f99aee097e6552000148/solutions/python
 def solution(s):
     newString = ''
