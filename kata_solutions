@@ -1,0 +1,16 @@
+## Breaking Camel Case ##
+# 'camelCase' should output 'camel Case'
+# Date: August 1, 2020
+# 6 kyu
+# https://www.codewars.com/kata/5208f99aee097e6552000148/solutions/python
+def solution(s):
+    newString = ''
+    for i in s:
+        if i.isupper():
+            newString += ' '
+        newString += i
+    return newString
+
+# another solution
+def solution(s):
+    return ''.join(' ' + c if c.isupper() else c for c in s)
