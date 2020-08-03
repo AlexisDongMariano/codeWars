@@ -1,8 +1,7 @@
-## Beginner Series #3 Sum of Numbers ##
+## 1. Beginner Series #3 Sum of Numbers ##
 # Given two integers a and b, which can be positive or negative, 
 # find the sum of all the numbers between including them too 
 # and return it. If the two numbers are equal return a or b.
-# Date: August 1, 2020
 # https://www.codewars.com/kata/55f2b110f61eb01779000053/train/python
 def get_sum(a,b):
     ans = 0
@@ -18,3 +17,30 @@ def get_sum(a,b):
  # other answer
  def get_sum(a,b):
     return sum(range(min(a,b), max(a,b)+1))
+
+
+## 2. Ones and Zeroes ##
+# Given an array of ones and zeroes, convert the equivalent binary value to an integer.
+# Eg: [0, 0, 0, 1] is treated as 0001 which is the binary representation of 1.
+# https://www.codewars.com/kata/578553c3a1b8d5c40300037c/train/python
+def binary_array_to_number(arr):
+    binary_val = 1
+    final_val = 0
+    
+    for e in reversed(arr):
+        if e == 1:
+            final_val += binary_val
+        binary_val += binary_val
+
+    return final_val
+    
+# other answer #1
+def binary_array_to_number(arr):
+    return sum(digit * 2**i for i, digit in enumerate(reversed(arr)))
+    
+# other answer #2
+def binary_array_to_number(arr):
+    s = 0
+    for digit in arr:
+        s = s * 2 + digit
+    return s
