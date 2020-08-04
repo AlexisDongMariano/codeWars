@@ -1,6 +1,5 @@
-## Breaking Camel Case ##
+## 1. Breaking Camel Case ##
 # 'camelCase' should output 'camel Case'
-# Date: August 1, 2020
 # https://www.codewars.com/kata/5208f99aee097e6552000148/solutions/python
 def solution(s):
     newString = ''
@@ -10,6 +9,26 @@ def solution(s):
         newString += i
     return newString
 
-# another solution
+# *another solution
 def solution(s):
     return ''.join(' ' + c if c.isupper() else c for c in s)
+    
+    
+## 2. Two Sum ##
+# sample: twoSum [1, 2, 3] 4 === (0, 2)
+# https://www.codewars.com/kata/52c31f8e6605bcc646000082/train/python
+def two_sum(numbers, target):
+    for i, e1 in enumerate(numbers):
+        for j, e2 in enumerate(numbers):
+            if i != j:
+                if (numbers[i] + numbers[j]) == target:
+                    return i, j
+                    
+# *other solution
+def two_sum(nums, t):
+    for i, x in enumerate(nums):
+        for j, y in enumerate(nums):
+            if i != j and x + y == t:
+                return [i, j]
+                    
+                    
