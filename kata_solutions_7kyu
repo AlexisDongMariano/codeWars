@@ -34,13 +34,23 @@ def binary_array_to_number(arr):
 
     return final_val
     
-# other answer #1
+# *other answer #1
 def binary_array_to_number(arr):
     return sum(digit * 2**i for i, digit in enumerate(reversed(arr)))
     
-# other answer #2
+# *other answer #2
 def binary_array_to_number(arr):
     s = 0
     for digit in arr:
         s = s * 2 + digit
     return s
+    
+    
+## 3. gimme##
+# https://www.codewars.com/kata/545a4c5a61aa4c6916000755
+def gimme(input_array):
+    for x, i in enumerate(input_array):
+        if i != max(input_array) and i != min(input_array):
+            return x
+# *other answer
+return inputArray.index(sorted(inputArray)[1])
