@@ -60,6 +60,30 @@ def high(x):
         list.append(scores)
     # return the index of the max word from list as it also corresponds to the word's index
     return words[list.index(max(list))]
+ 
+ 
+## 4. Title Case ##
+# https://www.codewars.com/kata/5202ef17a402dd033c000009/
+def title_case(title, minor_words=''):
+    if not title:
+        return ''
+    words = title.lower().split(" ")
+    minor = minor_words.lower().split(" ")
+
+    new_word = " ".join([(word[0].upper() + word[1:].lower())
+                 if word not in minor
+                 else word.lower()
+                 for word in words])
+
+    final = new_word[0].upper() + new_word[1:]
+    return final
+    # tip to improve above code: use the capitalize()
+
+# other answer:
+def title_case(title, minor_words=''):
+    title = title.capitalize().split()
+    minor_words = minor_words.lower().split()
+    return ' '.join([word if word in minor_words else word.capitalize() for word in title])
 
 
 
