@@ -84,7 +84,46 @@ def title_case(title, minor_words=''):
     title = title.capitalize().split()
     minor_words = minor_words.lower().split()
     return ' '.join([word if word in minor_words else word.capitalize() for word in title])
+ 
+ 
+## 5. Simple Encryption #1 - Alternating Split ##
+# https://www.codewars.com/kata/57814d79a56c88e3e0000786
+def decrypt(encrypted_text, n):
+    result = encrypted_text
+    for i in range(n):
+        result = result
+        half = len(result)//2
+        # variable declaration
+        even, odd = result[:half], result[half:]
 
+        #creating a list of Non elements
+        decrypted = [None]*(len(even)+len(odd))
+        decrypted[::2], decrypted[1::2] = odd, even
+        result = ''.join(decrypted)
+    return result
+
+def encrypt(text, n):
+    encrypted = text
+    for i in range(n):
+        encrypted = encrypted[1::2] + encrypted[::2]
+    return encrypted
+    
+# *other answer:
+def decrypt(text, n):
+    if text in ("", None):
+        return text
+    
+    ndx = len(text) // 2
+    for i in range(n):
+        a = text[:ndx]
+        b = text[ndx:]
+        text = "".join(b[i:i+1] + a[i:i+1] for i in range(ndx + 1))
+    return text
+
+def encrypt(text, n):
+    for i in range(n):
+        text = text[1::2] + text[::2]
+    return text
 
 
 
