@@ -124,7 +124,28 @@ def encrypt(text, n):
     for i in range(n):
         text = text[1::2] + text[::2]
     return text
+  
+  
+## 6. +1 Array ##
+# https://www.codewars.com/kata/5514e5b77e6b2f38e0000ca9
+def up_array(arr):
+    if not arr:
+        return None
+    for i in arr:
+        if not isinstance(i, int) or i < 0 or i > 9:
+            return None
 
+    arr_str = str(int(''.join([str(i) for i in arr]))+1)
+    result = [int(i) for i in arr_str]
+    return result
+
+# *other solution:
+def up_array(arr):
+    if not arr or min(arr) < 0 or max(arr) > 9:
+        return None
+    else:
+        return [int(y) for y in str(int("".join([str(x) for x in arr])) + 1)]
+        
 
 
 
