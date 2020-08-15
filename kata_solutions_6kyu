@@ -179,7 +179,15 @@ def order(sentence):
                 new_words[int(letter)-1] = word
     
     return ' '.join(new_words)
-        
+
+# *other answer
+def extract_number(word):
+    for l in word: 
+        if l.isdigit(): return int(l)
+    return None
+
+def order(sentence):
+    return ' '.join(sorted(sentence.split(), key=extract_number))
 
 
 
