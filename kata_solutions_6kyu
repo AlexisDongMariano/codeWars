@@ -146,7 +146,7 @@ def up_array(arr):
     else:
         return [int(y) for y in str(int("".join([str(x) for x in arr])) + 1)]
         
-## Multiplication Table ##
+## 7. Multiplication Table ##
 # https://www.codewars.com/kata/5432fd1c913a65b28f000342
 def multiplication_table(row,col):
     my_list = [[None for i in range(col)] for i in range(row)]
