@@ -166,6 +166,19 @@ def multiplication_table(row,col):
             item.append(i*j)
         res.append(item)
     return res
+ 
+ 
+## 8. Your order, please ##
+# https://www.codewars.com/kata/55c45be3b2079eccff00010f
+def order(sentence):
+    words = sentence.split(' ')
+    new_words = words[:]
+    for word in words:
+        for letter in word:
+            if letter.isdigit():
+                new_words[int(letter)-1] = word
+    
+    return ' '.join(new_words)
         
 
 
