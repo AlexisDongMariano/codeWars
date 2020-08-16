@@ -190,6 +190,41 @@ def order(sentence):
     return ' '.join(sorted(sentence.split(), key=extract_number))
 
 
+## 9. Kebabize ##
+# https://www.codewars.com/kata/57f8ff867a28db569e000c4a
+def kebabize(input_str):
+    output_str = ''
+    for i in input_str:
+        if i.isdigit():
+            continue
+        elif not i.isupper():
+            output_str += i
+        else:
+            if not output_str == '':
+                output_str += '-' + i.lower()
+            else:
+                output_str += i.lower()
+
+    return output_str
+    
+# *other answer:
+def kebabize(string):
+    result = ""
+    
+    for c in string:
+        if c.isupper():
+            if result is not "":
+                result += "-{}".format(c.lower())
+            else:
+                result += c.lower()
+        if c.islower():
+            result += c
+            
+    return result
+# *other answer
+def kebabize(s):
+    return ''.join(c if c.islower() else '-' + c.lower() for c in s if c.isalpha()).strip('-')
+
 
 
 
