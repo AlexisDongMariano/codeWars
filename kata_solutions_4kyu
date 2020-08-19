@@ -1,0 +1,59 @@
+## 1. Strings Mix ##
+# https://www.codewars.com/kata/5629db57620258aa9d000014
+def letter_count(input_str):
+    input_str_dict = {}
+    for i in input_str:
+        if i.isalpha() and i.islower():
+            if i not in input_str_dict:
+                input_str_dict[i] = i
+            else:
+                input_str_dict[i] = input_str_dict.get(i) + i
+    return {k: v for k, v in input_str_dict.items() if len(v) > 1}
+
+
+def merge_dict(dict1, dict2):
+    str_list = []
+    for k, v in dict1.items():
+        if k in dict2.keys():
+            if len(dict1.get(k)) > len(dict2.get(k)):
+                str_list.append(('1', dict1.get(k)))
+            elif len(dict2.get(k)) > len(dict1.get(k)):
+                str_list.append(('2', dict2.get(k)))
+            else:
+                str_list.append(('=', dict1.get(k)))
+            dict2.pop(k)
+        else:
+            str_list.append(('1', dict1.get(k)))
+
+    for k, v in dict2.items():
+        str_list.append(('2', dict2.get(k)))
+
+    str_list.sort(key=lambda num: num)
+    new = sorted(str_list, key=lambda num: len(num[1]), reverse=True)
+
+    out = ''
+    for index, i in enumerate(new):
+        out += i[0] + ':' + i[1]
+        if index < len(new)-1:
+            out += '/'
+    return out
+
+
+def mix(s1, s2):
+    return merge_dict(letter_count(s1), letter_count(s2))
+    
+
+# *other solution:
+from collections import Counter
+
+def mix(s1, s2):
+    c1 = Counter(filter(str.islower, s1))
+    c2 = Counter(filter(str.islower, s2))
+    res = []
+    for c in set(c1.keys() + c2.keys()):
+        n1, n2 = c1.get(c, 0), c2.get(c, 0)
+        if n1 > 1 or n2 > 1:
+            res.append(('1', c, n1) if n1 > n2 else
+                ('2', c, n2) if n2 > n1 else ('=', c, n1))
+    res = ['{}:{}'.format(i, c * n) for i, c, n in res]
+    return '/'.join(sorted(res, key=lambda s: (-len(s), s)))
