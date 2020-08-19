@@ -3,12 +3,14 @@
 def letter_count(input_str):
     input_str_dict = {}
     for i in input_str:
-        if i.isalpha() and i.islower():
+        if i.isalpha() and i.islower():    # accept only lowercase letters
             if i not in input_str_dict:
                 input_str_dict[i] = i
             else:
                 input_str_dict[i] = input_str_dict.get(i) + i
-    return {k: v for k, v in input_str_dict.items() if len(v) > 1}
+    # value will be a dict with letter as key, and value with letter with corresponding count
+    # ex: {'a':'aaaaa', 'b':22...}
+    return {k: v for k, v in input_str_dict.items() if len(v) > 1}   
 
 
 def merge_dict(dict1, dict2):
@@ -27,7 +29,9 @@ def merge_dict(dict1, dict2):
 
     for k, v in dict2.items():
         str_list.append(('2', dict2.get(k)))
-
+        
+    # create a list of tuples with key tuple[0] as where str the letter is longer (1|2) else, '='
+    # sort the list of tuples with the greatest count of letters found, if equal, lexical sort
     str_list.sort(key=lambda num: num)
     new = sorted(str_list, key=lambda num: len(num[1]), reverse=True)
 
