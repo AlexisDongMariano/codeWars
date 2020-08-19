@@ -1,0 +1,27 @@
+## 1. Count Characters in your String ##
+# https://www.codewars.com/kata/52efefcbcdf57161d4000091
+def count(string):
+    out = {}
+    for i in string:
+        if i not in out.keys():
+            out[i] = 1;
+        else:
+            out[i] = out.get(i) + 1
+    return out
+    
+# *other solution:
+from collections import Counter
+
+def count(string):
+    return Counter(string)
+    
+# *other solution:
+def count(string):
+    counter = {}
+    for char in string:
+        counter[char] = counter.get(char, 0) + 1
+    return counter
+
+# *other solutions:
+def count(string):
+    return {ch: string.count(ch) for ch in string}
