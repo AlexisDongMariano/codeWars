@@ -1,0 +1,58 @@
+## 1. Directions Reduction ##
+# https://www.codewars.com/kata/550f22f4d758534c1100025a
+def dirReduc(arr):
+    stack = []
+    if arr:
+        stack.append(arr[0])
+    else:
+        return arr
+    
+    for index, direction in enumerate(arr[1:]):
+        if stack:
+            last = stack[len(stack) - 1]
+        else:
+            last = None
+    
+        if ((last == 'NORTH' and direction == 'SOUTH') or (last == 'SOUTH' and direction == 'NORTH') or
+                (last == 'WEST' and direction == 'EAST') or (last == 'EAST' and direction == 'WEST')):
+            stack.pop(len(stack)-1)
+        else:
+            stack.append(direction)
+            
+    return stack
+    
+# *other solutions --> not very efficient
+def dirReduc(arr):
+    dont1 = ["NORTH", "SOUTH"]
+    dont2 = ["WEST", "EAST"]
+    reset = True
+
+    while reset:
+        for x, i in enumerate(arr):
+            if x + 1 == len(arr):
+                reset = False
+            elif (arr[x] in dont1 and arr[x + 1] in dont1) or (arr[x] in dont2 and arr[x + 1] in dont2):
+                arr.pop(x)
+                arr.pop(x)
+                break
+
+    return arr
+    
+# *other solutions:
+opposite = {'NORTH': 'SOUTH', 'EAST': 'WEST', 'SOUTH': 'NORTH', 'WEST': 'EAST'}
+
+def dirReduc(plan):
+    new_plan = []
+    for d in plan:
+        if new_plan and new_plan[-1] == opposite[d]:
+            new_plan.pop()
+        else:
+            new_plan.append(d)
+    return new_plan
+    
+# *other solutions:
+def dirReduc(arr):
+    dir = " ".join(arr)
+    dir2 = dir.replace("NORTH SOUTH",'').replace("SOUTH NORTH",'').replace("EAST WEST",'').replace("WEST EAST",'')
+    dir3 = dir2.split()
+    return dirReduc(dir3) if len(dir3) < len(arr) else dir3
