@@ -25,3 +25,37 @@ def count(string):
 # *other solutions:
 def count(string):
     return {ch: string.count(ch) for ch in string}
+
+
+## 2. IQ Test ##
+# https://www.codewars.com/kata/552c028c030765286c00007d 
+def iq_test(numbers):
+    arr = [int(i) for i in numbers.split(" ")] # splitting the string of numbers then converting each to int
+
+    even_count, odd_count, even, odd = 0, 0, 0, 0
+
+    for x, i in enumerate(arr, 1):
+        if i % 2 == 0:
+            even_count += 1
+            even = x
+        else:
+            odd_count += 1
+            odd = x
+
+    if even_count > 1:
+        return odd
+    return even
+    
+# *other answer:
+def iq_test(numbers):
+    e = [int(i) % 2 == 0 for i in numbers.split()]
+
+    return e.index(True) + 1 if e.count(True) == 1 else e.index(False) + 1
+    
+# *other answer:
+def iq_test(n):
+    n = [int(i)%2 for i in n.split()]
+    if n.count(0)>1:
+        return n.index(1)+1
+    else:
+        return n.index(0)+1
