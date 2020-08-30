@@ -49,3 +49,64 @@ def gimme(input_array):
             return x
 # *other answer
 return inputArray.index(sorted(inputArray)[1])
+
+
+## 4. Resistor Color Codes ##
+# https://www.codewars.com/kata/57cf3dad05c186ba22000348/solutions/python
+def remove_zero(val):
+    nval = ''
+    if val.endswith('.0'):
+        return val[:len(val)-2]
+    else:
+        return val
+
+def decode_resistor_colors(bands):
+    input = bands.split(' ')
+    val = 0
+    out = ''
+    color_codes = {
+        'black': '0',
+        'brown': '1',
+        'red': '2',
+        'orange': '3',
+        'yellow': '4',
+        'green': '5',
+        'blue': '6',
+        'violet': '7',
+        'gray': '8',
+        'white': '9'
+    }
+    val = int(color_codes[input[0]] + color_codes[input[1]])*(10**int(color_codes[input[2]]))
+
+    if val >= 1000 and val < 1000000:
+        val /= 1000
+        out = f'{remove_zero(str(val))}k ohms,'
+    elif val >= 1000000:
+        val /= 1000000
+        out = f'{remove_zero(str(val))}M ohms,'
+    else:
+        out = f'{str(val)} ohms,'
+
+    if len(input) == 3:
+        out += ' 20%'
+    elif input[3] == 'silver':
+        out += ' 10%'
+    else:
+        out += ' 5%'
+    return out
+    
+# *other solution:
+code = {'black': 0, 'brown': 1, 'red': 2, 'orange': 3, 'yellow': 4,
+'green': 5, 'blue': 6, 'violet': 7, 'gray': 8, 'white': 9,
+'gold': 5, 'silver': 10, '': 20}
+def decode_resistor_colors(bands):
+    colors = (bands + ' ').split(' ')
+    value = 10 * code[colors[0]] + code[colors[1]]
+    value *= 10 ** code[colors[2]]
+    tolerance = code[colors[3]]
+    prefix = ''
+    for p in 'kM':
+        if value // 1000:
+            prefix = p
+            value /= 1000
+    return "%g%s ohms, %d%%" % (value, prefix, tolerance)
